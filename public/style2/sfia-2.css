@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo');
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: local('Proxima Nova'), local('Proxima Nova'), 
+         url(../fontsDD/Proxima-Nova-Reg.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Proxima Nova Light';
+  src: local('Proxima Nova Light'), local('Proxima Nova Light'), 
+         url(../fontsDD/Proxima-Nova-Light.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Proxima Nova Bold';
+  src: local('Proxima Nova Bold'), local('Proxima Nova Bold'), 
+         url(../fontsDD/Proxima-Nova-Bold.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Proxima Nova XBold';
+  src: local('Proxima Nova XBold'), local('Proxima Nova XBold'), 
+         url(../fontsDD/Proxima-Nova-Xbold.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Proxima Nova Thin';
+  src: local('Proxima Nova Thin'), local('Proxima Nova Thin'), 
+         url(../fontsDD/Proxima-Nova-Thin.otf) format('opentype');
+}
+
+body{
+
+background: rgba(72,127,250,1);
+background: -moz-radial-gradient(center, ellipse cover, rgba(72,127,250,1) 0%, rgba(19,69,168,1) 83%, rgba(19,69,168,1) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(72,127,250,1)), color-stop(83%, rgba(19,69,168,1)), color-stop(100%, rgba(19,69,168,1)));
+background: -webkit-radial-gradient(center, ellipse cover, rgba(72,127,250,1) 0%, rgba(19,69,168,1) 83%, rgba(19,69,168,1) 100%);
+background: -o-radial-gradient(center, ellipse cover, rgba(72,127,250,1) 0%, rgba(19,69,168,1) 83%, rgba(19,69,168,1) 100%);
+background: -ms-radial-gradient(center, ellipse cover, rgba(72,127,250,1) 0%, rgba(19,69,168,1) 83%, rgba(19,69,168,1) 100%);
+background: radial-gradient(ellipse at center, rgba(72,127,250,1) 0%, rgba(19,69,168,1) 83%, rgba(19,69,168,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#487ffa', endColorstr='#1345a8', GradientType=1 );
+}
+
+
+.b-radius{
+  border-radius: 20px;
+}
+.f-baloo{
+  font-family: 'Baloo'
+}
+.btn-login{
+      background-color: #3762C5 !important;
+    border-radius: 10px;
+}
+.signo-login{
+      color: #BDCCD4;
+}
+.aviso-footer{
+    width: 100%;
+    margin: 0 auto;
+    bottom: 0;
+    position: absolute;
+    text-align: center;
+    color: #fff;
+    font-family: 'Proxima Nova Xbold';
+    font-size: 12px;
+}
+
+
