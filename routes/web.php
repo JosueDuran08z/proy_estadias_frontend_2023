@@ -22,8 +22,9 @@ $router->get('propuesta2', function () use ($router) {
 });
 
 $router->get('', function () use ($router) {
-     return view('home');
-}); 
+     //return view('home');
+     return view('homeJuanjo');
+});
 //Route::get('', 'Controller@home');
 
 $router->get('conoce/mision', function () use ($router) {

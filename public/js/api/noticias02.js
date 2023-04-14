@@ -2,23 +2,32 @@
 const { useState } = React;
 const { Row, Button, Col, Table, Card } = ReactBootstrap;
 
-class Inicio extends React.Component {
+class Noticias extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            token: [],
             listaNoticias:[],
             leerNoticia:false,
-            noticia:[],
+            noticia:{},
             listaSugerencias:[],
             cargando:false,
             primerAcceso:true,
-            anioMin:2017,
-            anioMax:2020
+            anioMin:null,
+            anioMax:null,
+            URL_API_TOKEN: "https://dhernandeza.inaeba.edu.mx/security/login?usuario=root@inaeba.edu.mx&password=root@ine1024",
+            URL_API_BANNERS: "https://dhernandeza.inaeba.edu.mx/public/getBannerActivo",
+            URL_API_STORAGE: "https://storage.inaeba.edu.mx/public/getFile/"
         };
     }
 
     componentDidMount() {
         this.getDatos();
+    }
+
+    getToken() {
+        axios.post(URL_API_TOKEN).then(({ data : { access_token } }) => setToken(access_token))
+            .catch(error => console.log(error));
     }
 
     getDatos(){
@@ -30,6 +39,11 @@ class Inicio extends React.Component {
                 response.data.forEach(anio => {
                     anios.push(anio.anios);
                 });
+
+                const anioActual = new Date().getFullYear();
+
+                if (!anios.includes(anioActual))
+                    anios.push(anioActual);
 
                 context.setState({
                     anioMin:Math.min.apply(null,anios),
@@ -49,7 +63,9 @@ class Inicio extends React.Component {
         this.setState({
             cargando:true
         });
-        axios
+        console.clear();
+        console.log(mes, anio);
+        /* axios
             .get(`/public/listanoticias/${anio}/mes/${mes}`)
             .then(function(response){
                 if(response.data.length > 0){
@@ -80,7 +96,76 @@ class Inicio extends React.Component {
             })
             .catch(function(error){
                 console.log(error);
+            }); */
+        const noticiasArray = [
+            {
+                id: 1,
+                nombre_archivo: "OzHZtP46NpdmZu9dbbAgLvnyXBI139Ptvpb1y5BI.jpg",
+                titulo: "Noticia 1",
+                descripcion: `
+                    <h3><b>Eréndira certificó secundaria y asegura tener metas muy altas.
+                    </b></h3><p>
+                    <br>León,
+                    Guanajuato a 22 de enero de 2023. La decisión de retomar los estudios
+                    con el Instituto de Alfabetización y Educación Básica para Adultos
+                    (INAEBA) le cambio la vida a María Eréndira Ortiz Picón.
+                    <br>
+                    <br>“¡Ahora
+                    quiero estudiar la prepa!, mi meta es estar en un trabajo fijo en el
+                    área de contabilidad o haciendo un inventario; ya no quiero sacrificarme
+                    tanto como antes, porque, aunque trabajara de empleada en una casa, era
+                    una friega”.
+                    <br>
+                    <br>Luego de certificar la secundaria con INAEBA,
+                    Eréndira puso una lonchería donde puede equilibrar el tiempo con su
+                    familia y podrá continuar con sus estudios de preparatoria.
+                    <br>
+                    <br>Tiene
+                    5 hijos, para quienes busca ser un ejemplo y asegura que con el apoyo
+                    de su esposo Isaac, logró obtener su certificado. Agregó que se siente
+                    agradecida con los asesores académicos del instituto quiénes le
+                    brindaron todas las herramientas que necesitaba.
+                    <br>
+                    </p>
+                `
+            },
+            {
+                id: 2,
+                nombre_archivo: "c5pV6KtSCeMElSzUaHpVPcI1yAzHQmziDmUqTduE.jpg",
+                titulo: "Noticia 2",
+                descripcion: `
+                    <h3><i>Además se ofrece la incorporación a los programas educativos para que
+                    las personas de 15 años y más, aprendan a leer, a escribir, terminen la
+                    primaria y secundaria.
+                    </i></h3><p>
+                    <br><font color="#ffffff"><span style="background-color: rgb(0, 0, 0);">León, Guanajuato a 15 de enero de 2022.
+                    El Instituto de Alfabetización y Educación Básica para Adultos (INAEBA)
+                    tiene presencia en el Feria Estatal de León 2023 para promocionar los
+                    servicios educativos para las personas de 15 años y más que requieran
+                    aprender a leer, a escribir, o concluir la educación básica.
+                    <br></span></font>
+                    <font color="#ffffff"><span style="background-color: rgb(0, 0, 0);"><br>Dentro
+                    del Pabellón Guanajuato se ubica el stand del instituto en la sala B300
+                    y en el estacionamiento de poliforum se colocó la Unidad Móvil, en
+                    ambos se puede presentar el Examen Único de Reconocimiento de Saberes
+                    donde se obtiene el resultado de manera inmediata, quienes lo acreditan
+                    podrán recibir el certificado oficial de educación básica.
+                    </span></font></p>
+                `
+            }
+        ];
+
+        context.setState({
+            listaNoticias: noticiasArray,
+            cargando:false
+        });
+
+        if(context.state.primerAcceso || context.state.listaSugerencias.length === 0){
+            context.setState({
+                listaSugerencias:noticiasArray,
+                primerAcceso:false
             });
+        }
     }
 
     getNoticia = (idNoticia) =>{
@@ -174,20 +259,18 @@ class Inicio extends React.Component {
                                             {this.state.listaNoticias.length > 0 ?
                                                 (
                                                     <React.Fragment>
-                                                        {this.state.listaNoticias.map((noticia)=>{
+                                                        {this.state.listaNoticias.map(({ id, nombre_archivo, titulo, descripcion })=>{
                                                             return(
-                                                                <Card key={noticia.idNoticia} className="mb-2">
+                                                                <Card key={id} className="mb-2">
                                                                     <Row style={{marginLeft:"2px", marginRight:"2px"}}>
                                                                         <Col xs={12} sm={12} md={2} lg={2} xl={2} className="text-center">
-                                                                            <img className="rounded" width="100%" src={noticia.rutaFoto} title={noticia.tooltip} alt={noticia.tooltip}/>
+                                                                            <img className="rounded" width="100%" src={this.state.URL_API_STORAGE + nombre_archivo} title={titulo} alt={titulo}/>
                                                                         </Col>
                                                                         <Col xs={12} sm={12} md={10} lg={10} xl={10}>
                                                                             <div className="container">
-                                                                                <h6><a className="linkNoticias" href="#" onClick={()=>this.getNoticia(noticia.idNoticia)}>{noticia.titular}</a></h6>
+                                                                                <h6><a className="linkNoticias" href="#" onClick={()=>this.getNoticia(id)}>{titulo}</a></h6>
                                                                                 <hr/>
-                                                                                <p className="text-justify resumenNoticia">
-                                                                                    {noticia.descripcion}
-                                                                                </p>
+                                                                                <div className="resumenNoticia" dangerouslySetInnerHTML={{ __html: descripcion }} />
                                                                             </div>
                                                                         </Col>
                                                                     </Row>
@@ -239,15 +322,15 @@ class Inicio extends React.Component {
                             (
                                 <Table borderless>
                                     <tbody>
-                                        {this.state.listaSugerencias.map((sugerencia) =>{
+                                        {this.state.listaSugerencias.map(({id, nombre_archivo, titulo}) =>{
                                             return (
-                                                <tr height="130" key={sugerencia.idNoticia}>
+                                                <tr height="130" key={id}>
                                                     <td width="51%">
-                                                        <img src={sugerencia.rutaFoto} width="173" alt={sugerencia.tooltip} title={sugerencia.tooltip} className="fotoland"/>
+                                                        <img src={this.state.URL_API_STORAGE + nombre_archivo} width="173" alt={tooltip} title={tooltip} className="fotoland"/>
                                                     </td>
                                                     <td width="49%" className="align-middle">
-                                                        <a className="linkNoticias" href="#" onClick={()=>this.getNoticia(sugerencia.idNoticia)}>
-                                                            {sugerencia.titular}
+                                                        <a className="linkNoticias" href="#" onClick={()=>this.getNoticia(id)}>
+                                                            {titular}
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -271,7 +354,5 @@ class Inicio extends React.Component {
         );
     }
 }
-function App() {
-    return <Inicio />;
-}
-ReactDOM.render(<App />, document.getElementById("reactArea"));
+
+ReactDOM.render(<Noticias/>, document.getElementById("reactNoticias"));
