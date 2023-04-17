@@ -21,7 +21,8 @@
             </div>
         </div>
     </div>
-    <div id="reactNoticias"></div>
+    <div id="reactNoticias">
+    </div>
     <div>
         <div class="row">
         <div class="div-titulo-noticias">ÚLTIMAS NOTICIAS</div>

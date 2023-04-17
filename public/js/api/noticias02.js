@@ -113,7 +113,7 @@ const Noticias = () => {
     return (
         <Row>
             <Col xs={12} sm={8} md={8} lg={8}>
-                <Row className={leerNoticia ? "visually-hidden":""}>
+                <Row>
                     <Col>
                         <Card>
                             <Card.Body>
@@ -126,102 +126,44 @@ const Noticias = () => {
                         </Card>
                     </Col>
                 </Row>
-                {!leerNoticia ?
-                    (
-                        <div>
-                            {cargando ?
-                                (
-                                    <div className="text-center" style={{height:"200px"}}>
-                                        <div className="spinner-border m-5" style={{width:"3rem",height:"3rem"}} role="status">
-                                            <span className="visually-hidden">Loading...</span>
-                                        </div>
-                                    </div>
-                                ):(
-                                    <React.Fragment>
-                                        {listaNoticias.length > 0 ?
-                                            (
-                                                <React.Fragment>
-                                                    {listaNoticias.map(({ id, nombre_archivo, titulo, descripcion })=>{
-                                                        return(
-                                                            <Card key={id} className="mb-2">
-                                                                <Row style={{marginLeft:"2px", marginRight:"2px"}}>
-                                                                    <Col xs={12} sm={12} md={2} lg={2} xl={2} className="text-center">
-                                                                        <img className="rounded" width="100%" src={URL_API_STORAGE + nombre_archivo} title={titulo} alt={titulo}/>
-                                                                    </Col>
-                                                                    <Col xs={12} sm={12} md={10} lg={10} xl={10}>
-                                                                        <div className="container">
-                                                                            <h6><a className="linkNoticias" href="#" onClick={() => getNoticia(id)}>{titulo}</a></h6>
-                                                                            <hr/>
-                                                                            <div className="resumenNoticia" dangerouslySetInnerHTML={{ __html: descripcion }} />
-                                                                        </div>
-                                                                    </Col>
-                                                                </Row>
-                                                            </Card>
-                                                        );
-                                                    })}
-                                                </React.Fragment>
-                                            ):(
-                                                <div className="alert alert-success" role="alert">
-                                                    <h4 className="alert-heading text-center">¡Upps No hemos encontrado noticias este mes!</h4>
-                                                    <hr/>
-                                                    <p className="mb-0">Parece que no se han registrado noticias en el mes seleccionado, si deseas puedes seleccionar una fecha diferente.</p>
-                                                </div>
-                                            )
-                                        }
-
-                                    </React.Fragment>
-                                )
-                            }
-
-                        </div>
-                    ):(
-                        <div>
-                            <h1 className="text-center">{noticia.titulo}</h1>
-                            <div className="fotonot">
-                                <img className="liFoto rounded" key={noticia.id} src={URL_API_STORAGE + nombre_archivo} width="262" alt={noticia.titulo} title={noticia.titulo} />
-                            </div>
-                            <div className="noticia" dangerouslySetInnerHTML={{ __html: noticia.descripcion }} />
-                            <Row>
-                                <Col xs={10} sm={10} md={5} lg={4} xl={4} className="d-grid">
-                                    <Button variant="info" onClick={() => regresar()}>
-                                        <i className="bi bi-arrow-left-circle"></i> Regresar
-                                    </Button>
-                                </Col>
-                            </Row>
-                        </div>
-                    )
-                }
-            </Col>
-            <Col xs={12} sm={4} md={4} lg={4} xl={4}>
-                <div className="dest-he">
-                    {leerNoticia ?
+                <div>
+                    {
+                        cargando ?
                         (
-                            <Table borderless>
-                                <tbody>
-                                    {listaSugerencias.map(({id, nombre_archivo, titulo}) =>{
-                                        return (
-                                            <tr height="130" key={id}>
-                                                <td width="51%">
-                                                    <img src={URL_API_STORAGE + nombre_archivo} width="173" alt={titulo} title={titulo} className="fotoland"/>
-                                                </td>
-                                                <td width="49%" className="align-middle">
-                                                    <a className="linkNoticias" href="#" onClick={()=> getNoticia(id)}>
-                                                        {titulo}
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </Table>
-                        ):(
-                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoyinaeba%2F&amp;tabs=timeline&amp;width=320&amp;height=450&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=true&amp;show_facepile=true&amp;appId"
-                                width="100%"
-                                height="450"
-                                style={{ border:"none",overflow:"hidden" }}
-                                scrolling="no"
-                                allowtransparency="true"
-                            ></iframe>
+                            <div className="text-center" style={{height:"200px"}}>
+                                <div className="spinner-border m-5" style={{width:"3rem",height:"3rem"}} role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        ) : listaNoticias.length ?
+                        (
+                            <React.Fragment>
+                                {listaNoticias.map(({ id, nombre_archivo, titulo, descripcion })=>{
+                                    return(
+                                        <Card key={id} className="mb-2">
+                                            <Row style={{marginLeft:"2px", marginRight:"2px"}}>
+                                                <Col xs={12} sm={12} md={2} lg={2} xl={2} className="text-center">
+                                                    <img className="rounded" width="100%" src={URL_API_STORAGE + nombre_archivo} title={titulo} alt={titulo}/>
+                                                </Col>
+                                                <Col xs={12} sm={12} md={10} lg={10} xl={10}>
+                                                    <div className="container">
+                                                        <h6><a className="linkNoticias" href="#" onClick={() => getNoticia(id)}>{titulo}</a></h6>
+                                                        <hr/>
+                                                        <div className="resumenNoticia" dangerouslySetInnerHTML={{ __html: descripcion }} />
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Card>
+                                    );
+                                })}
+                            </React.Fragment>
+                        ) :
+                        (
+                            <div className="alert alert-success" role="alert">
+                                <h4 className="alert-heading text-center">¡Upps No hemos encontrado noticias este mes!</h4>
+                                <hr/>
+                                <p className="mb-0">Parece que no se han registrado noticias en el mes seleccionado, si deseas puedes seleccionar una fecha diferente.</p>
+                            </div>
                         )
                     }
                 </div>

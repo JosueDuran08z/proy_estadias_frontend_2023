@@ -73,7 +73,7 @@ const Noticia = () => {
             {
                 cargando &&
                 (
-                    <div className="text-center" style={{ height:"200px" }}>
+                    <div className="text-center" style={{height:"200px"}}>
                         <div className="spinner-border m-5" style={{width:"3rem",height:"3rem"}} role="status">
                             <span className="visually-hidden">Loading...</span>
                         </div>
