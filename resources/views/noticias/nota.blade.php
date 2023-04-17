@@ -25,5 +25,5 @@
     <div id="reactNoticia">
     </div>
 </div>
-<script src="{{ url('/js/api/nota02.js') }}" type="text/babel"></script>
+<script src="{{ url('/js/api/nota.js') }}" type="text/babel"></script>
 @stop

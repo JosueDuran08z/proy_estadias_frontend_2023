@@ -1,318 +1,115 @@
-const { useState } = React;
+const { useState, useEffect } = React;
 const { Row, Button, Col, Table, Card } = ReactBootstrap;
 
-class Inicio extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            listaNoticias:[],
-            leerNoticia:false,
-            noticia:[],
-            listaSugerencias:[],
-            cargando:false,
-            primerAcceso:true,
-            anioMin:2017,
-            anioMax:2020
-        };
-    }
-      
+const Noticia = () => {
+    const [cargando, setCargando] = useState(true);
+    const [leerNoticia, setLeerNoticia] = useState(false);
+    const [noticia, setNoticia] = useState();
+    const URL_API_TOKEN =
+        'https://dhernandeza.inaeba.edu.mx/security/login?usuario=root@inaeba.edu.mx&password=root@ine1024';
+    const URL_API_NOTICIA =
+        'https://dhernandeza.inaeba.edu.mx/public/getNoticiaActiva/';
+    const URL_API_STORAGE = 'https://storage.inaeba.edu.mx/public/getFile/';
 
-    caja(){
-        return document.getElementById('txtNoticia').value;
-    }
+    const getNoticia = () => {
+        const url = window.location.href;
+        const idNoticia = url.substring(url.lastIndexOf("/") + 1);
 
-    componentDidMount() {
-        let txtIdNoticia = this.caja();
-        //this.getDatos();
-        let context = this;
-        axios
-            .get(`/public/noticia/${txtIdNoticia}`)
-            .then(function(response){
-                if(response.data.length > 0){
-                    let noti = response.data[0];
-                    let elementos = [];
-                    for(var i = 0; i<noti.elemento.length;i++){
-                        elementos.push({
-                            rutaFoto:"https://inaeba.guanajuato.gob.mx/n/archivos/media/"+noti.elemento[i].demp_archivo,
-                            tooltip:noti.elemento[i].demp_tooltip,
-                            idFoto:noti.elemento[i].demp_ID
+        /* axios
+        .post(URL_API_TOKEN)
+        .then(({ data: { access_token } }) => {
+            if (access_token) {
+                axios
+                .get(`${URL_API_NOTICIA + idNoticia}`, {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then(({ data }) => {
+                    if (data) {
+                        const noticiaResponse = data;
+                        setLeerNoticia(true);
+                        setNoticia({
+                            id: noticiaResponse.id,
+                            nombre_archivo: noticiaResponse.nombre_archivo,
+                            url: URL_API_STORAGE + noticiaResponse.nombre_archivo,
+                            titulo: noticiaResponse.titulo,
+                            tooltip: noticiaResponse.titulo,
+                            descripcion: noticiaResponse.descripcion,
+                            fecha_publicacion: noticiaResponse.fecha_publicacion
                         });
                     }
-                    context.setState({
-                        leerNoticia:true,
-                        noticia:{
-                            idNoticia: noti.mnot_ID,
-                            titular: noti.mnot_titular,
-                            texto:noti.mnot_noticia,
-                            elemento:elementos
-                        }
-                    });
-                }
-
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-    }
-
-    getDatos(){
-        let context = this;
-        axios
-            .get(`/public/anio`)
-            .then(function(response){
-                let anios = [];
-                response.data.forEach(anio => {
-                    anios.push(anio.anios);
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
-
-                context.setState({
-                    anioMin:Math.min.apply(null,anios),
-                    anioMax:Math.max.apply(null,anios)
-                });
-                context.getNoticias((new Date().getMonth()+1),(new Date().getFullYear()));
-                context.inicializarDatePicker();
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-    }
-
-    getNoticias = (mes, anio) =>{
-        let context=this;
-        let noticias = [];
-        this.setState({
-            cargando:true
-        });
-        axios
-            .get(`/public/listanoticias/${anio}/mes/${mes}`)
-            .then(function(response){
-                if(response.data.length > 0){
-                    let lista = response.data;
-                    for(var i = 0; i < lista.length; i++){
-                        noticias.push(
-                            {
-                                idNoticia:lista[i].mnot_ID,
-                                rutaFoto:"https://inaeba.guanajuato.gob.mx/n/archivos/media/"+lista[i].elemento[0].demp_archivo,
-                                titular:lista[i].mnot_titular,
-                                tooltip:lista[i].elemento[0].demp_tooltip,
-                                descripcion:lista[i].mnot_noticia
-                            }
-                        );
-                    }
-                }
-
-                context.setState({
-                    listaNoticias: noticias,
-                    cargando:false
-                });
-                if(context.state.primerAcceso || context.state.listaSugerencias.length === 0){
-                    context.setState({
-                        listaSugerencias:noticias,
-                        primerAcceso:false
-                    });
-                }
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-    }
-
-    getNoticia = (idNoticia) =>{
-        let context = this;
-        axios
-            .get(`/public/noticia/${idNoticia}`)
-            .then(function(response){
-                if(response.data.length > 0){
-                    let noti = response.data[0];
-                    let elementos = [];
-                    for(var i = 0; i<noti.elemento.length;i++){
-                        elementos.push({
-                            rutaFoto:"https://inaeba.guanajuato.gob.mx/n/archivos/media/"+noti.elemento[i].demp_archivo,
-                            tooltip:noti.elemento[i].demp_tooltip,
-                            idFoto:noti.elemento[i].demp_ID
-                        });
-                    }
-                    context.setState({
-                        leerNoticia:true,
-                        noticia:{
-                            idNoticia: noti.mnot_ID,
-                            titular: noti.mnot_titular,
-                            texto:noti.mnot_noticia,
-                            elemento:elementos
-                        }
-                    });
-                }
-
-            })
-            .catch(function(error){
-                console.log(error);
-            });
-    }
-
-    regresar = () =>{
-        /*this.setState({
-            leerNoticia:false,
-            noticia:[]
-        });*/
-        window.location.href='../noticias';
-    }
-
-    inicializarDatePicker = () =>{
-        let context = this;
-        $('.date-picker').datepicker( {
-            changeMonth: true,
-            changeYear: true,
-            showButtonPanel: true,
-            dateFormat: 'MM yy',
-            minDate: new Date(context.state.anioMin,0,1),
-            maxDate: new Date(context.state.anioMax,11,1),
-            defaultDate: new Date(new Date().getFullYear(), new Date().getMonth(),1),
-            onClose: function(dateText, inst) { 
-                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
-                context.getNoticias(inst.selectedMonth+1, inst.selectedYear);
             }
+        })
+        .catch((error) => console.log(error)); */
+        setCargando(false);
+        setLeerNoticia(true);
+        setNoticia({
+            id: 1,
+            nombre_archivo: 'OzHZtP46NpdmZu9dbbAgLvnyXBI139Ptvpb1y5BI.jpg',
+            url: URL_API_STORAGE + 'OzHZtP46NpdmZu9dbbAgLvnyXBI139Ptvpb1y5BI.jpg',
+            titulo: 'Noticia 1',
+            tooltip: 'Noticia 1',
+            descripcion: `
+                <h3><i>Además se ofrece la incorporación a los programas educativos para que \r\nlas personas de 15 años y más, aprendan a leer, a escribir, terminen la \r\nprimaria y secundaria.\r\n</i></h3><p>\r\n<br><font color=\"#ffffff\"><span style=\"background-color: rgb(0, 0, 0);\">León, Guanajuato a 15 de enero de 2022. \r\nEl Instituto de Alfabetización y Educación Básica para Adultos (INAEBA) \r\ntiene presencia en el Feria Estatal de León 2023 para promocionar los \r\nservicios educativos para las personas de 15 años y más que requieran \r\naprender a leer, a escribir, o concluir la educación básica.\r\n<br></span></font>\r\n<font color=\"#ffffff\"><span style=\"background-color: rgb(0, 0, 0);\"><br>Dentro\r\n del Pabellón Guanajuato se ubica el stand del instituto en la sala B300\r\n y en el estacionamiento de poliforum se colocó la Unidad Móvil, en \r\nambos se puede presentar el Examen Único de Reconocimiento de Saberes \r\ndonde se obtiene el resultado de manera inmediata, quienes lo acreditan \r\npodrán recibir el certificado oficial de educación básica.\r\n</span></font></p>
+            `,
+            fecha_publicacion: '2023-04-25',
         });
-        $('.date-picker').datepicker('setDate', new Date(new Date().getFullYear(), new Date().getMonth(), 1));
-    }
+    };
 
-    render() {
-        return (
-            <Row>
-                <Col xs={12} sm={8} md={8} lg={8}>
-                    <Row className={this.state.leerNoticia ? "visually-hidden":""}>
-                        <Col>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Subtitle>Elija la combinación de mes y año </Card.Subtitle>
-                                    <div className="input-group mb-3">
-                                        <span className="input-group-text" id="basic-addon1">Fecha: </span>
-                                        <input type="text" className="form-control date-picker" placeholder="MM/yyyy" aria-label="Fecha" aria-describedby="Fecha"/>
-                                    </div>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                    {!this.state.leerNoticia ?
-                        (
-                            <div>
-                                {this.state.cargando ? 
-                                    (
-                                        <div className="text-center" style={{height:"200px"}}>
-                                            <div className="spinner-border m-5" style={{width:"3rem",height:"3rem"}} role="status">
-                                                <span className="visually-hidden">Loading...</span>
-                                            </div>
-                                        </div>
-                                    ):(
-                                        <React.Fragment>
-                                            {this.state.listaNoticias.length > 0 ?
-                                                (
-                                                    <React.Fragment>
-                                                        {this.state.listaNoticias.map((noticia)=>{
-                                                            return(
-                                                                <Card key={noticia.idNoticia} className="mb-2 tituloss">
-                                                                    <Row style={{marginLeft:"2px", marginRight:"2px"}}>
-                                                                        <Col xs={12} sm={12} md={2} lg={2} xl={2} className="text-center">
-                                                                            <img className="rounded" width="100%" src={noticia.rutaFoto} title={noticia.tooltip} alt={noticia.tooltip}/>
-                                                                        </Col>
-                                                                        <Col xs={12} sm={12} md={10} lg={10} xl={10}>
-                                                                            <div className="container">
-                                                                                <h6><a className="linkNoticias" href="#" onClick={()=>this.getNoticia(noticia.idNoticia)}>{noticia.titular}</a></h6>
-                                                                                <hr/>
-                                                                                <p className="resumenNoticia">
-                                                                                    {noticia.descripcion}
-                                                                                </p>
-                                                                            </div>
-                                                                        </Col>
-                                                                    </Row>
-                                                                </Card>
-                                                            );
-                                                        })}
-                                                    </React.Fragment>
-                                                ):(
-                                                    <div className="alert alert-success" role="alert">
-                                                        <h4 className="alert-heading text-center">¡Upps No hemos encontrado noticias este mes!</h4>
-                                                        <hr/>
-                                                        <p className="mb-0">Parece que no se han registrado noticias en el mes seleccionado, si deseas puedes seleccionar una fecha diferente.</p>
-                                                    </div>
-                                                )     
-                                            }
-                                            
-                                        </React.Fragment>
-                                    )
-                                }
-                                
-                            </div>
-                        ):(
-                            <div>
-                                <h1 className="text-center">{this.state.noticia.titular}</h1>
-                                <br />
-                                <br />
-                                <div className="contenedornoticias">
-                                    {this.state.noticia.elemento.map((foto)=>{
-                                        return(
-                                            <img className="imgnoticias" key={foto.idFoto} src={foto.rutaFoto} width="262" alt={foto.tooltip} title={foto.tooltip} />
-                                        );
-                                    })}
-                                </div>
-                                <br />
-                                <br />
-                                <div className="noticia tituloss">
-                                    {this.state.noticia.texto}
-                                    <br />
-                                <br />
-                                </div>
-                                <Row>
-                                    
-                                    <Col xs={10} sm={10} md={5} lg={4} xl={4} className="d-grid centrar">
-                                        <Button variant="success" onClick={()=>this.regresar()}>
-                                            <i className="bi bi-arrow-left-circle"></i> Regresar
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </div>
-                        )
-                    }
-                </Col>
-                <Col xs={12} sm={4} md={4} lg={4} xl={4}>
-                    <div className="dest-he">
-                        
-                        {this.state.leerNoticia ? 
-                            (
-                                <Table borderless>
-                                    <tbody>
-                                        {this.state.listaSugerencias.map((sugerencia) =>{
-                                            return (
-                                                <tr height="130" key={sugerencia.idNoticia}>
-                                                    <td width="51%"> 
-                                                        <img src={sugerencia.rutaFoto} width="173" alt={sugerencia.tooltip} title={sugerencia.tooltip} className="fotoland"/>
-                                                    </td>
-                                                    <td width="49%" className="align-middle">
-                                                        <a className="linkNoticias" href="#" onClick={()=>this.getNoticia(sugerencia.idNoticia)}>
-                                                            {sugerencia.titular}
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            );
-                                        })}
-                                    </tbody>
-                                </Table>
-                            ):(
-                                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoyinaeba%2F&amp;tabs=timeline&amp;width=320&amp;height=450&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=true&amp;show_facepile=true&amp;appId"
-                                        width="100%"
-                                        height="450"
-                                        style={{ border:"none",overflow:"hidden" }}
-                                        scrolling="no"
-                                        allowtransparency="true"
-                                ></iframe>
-                            )
-                        }
+    const regresar = () => (window.location.href = "../noticias");
+
+    useEffect(() => getNoticia(), []);
+
+    useEffect(() => console.log(noticia), [noticia]);
+
+    return (
+        <div>
+
+            {
+                cargando &&
+                (
+                    <div className="text-center" style={{height:"200px"}}>
+                        <div className="spinner-border m-5" style={{width:"3rem",height:"3rem"}} role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
                     </div>
-                </Col>
-            </Row>
-        );
-    }
-}
-function App() {
-    return <Inicio />;
-}
-ReactDOM.render(<App />, document.getElementById("reactArea"));
+                )
+            }
+            {
+                leerNoticia && noticia &&
+                (
+                    <>
+                        <h1 className="text-center">{noticia.titulo}</h1>
+                        <br />
+                        <br />
+                        <div className="text-center">
+                            <img className="imgnoticias" key={noticia.id} src={URL_API_STORAGE + noticia.nombre_archivo} width="262" alt={noticia.titulo} title={noticia.titulo} />
+                        </div>
+                        <br />
+                        <br />
+                        <div className="noticia tituloss">
+                            <div dangerouslySetInnerHTML={{ __html: noticia.descripcion }} />
+                            <br />
+                            <br />
+                        </div>
+                        <Row>
+
+                            <Col xs={10} sm={10} md={5} lg={4} xl={4} className="d-grid centrar">
+                                <Button variant="success" onClick={() => regresar()}>
+                                    <i className="bi bi-arrow-left-circle"></i> Regresar
+                                </Button>
+                            </Col>
+                        </Row>
+                    </>
+                )
+            }
+        </div>
+    );
+};
+
+ReactDOM.render(<Noticia />, document.getElementById("reactNoticia"));

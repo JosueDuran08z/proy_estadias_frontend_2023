@@ -30,6 +30,6 @@
         <div class="div-noticias"><a class="link-noticias" href="https://boletines.guanajuato.gob.mx/notas/?id=35" target="_blank" rel="noopener">VER TODAS LAS NOTICIAS</a></div>
     </div>
 </div>
-<script src="{{ url('/js/api/noticias02.js') }}" type="text/babel"></script>
+<script src="{{ url('/js/api/noticias.js') }}" type="text/babel"></script>
 <script src="{{ url('/js/boletin.js') }}" type="text/babel"></script>
 @stop
