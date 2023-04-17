@@ -135,7 +135,7 @@ var Tawk_API = Tawk_API || {},
 
 </div>
 
-<script src="{{ url('/js/api/banner02.js') }}" type="text/babel"></script>
+<script src="{{ url('/js/api/banner.js') }}" type="text/babel"></script>
 
 <script src="{{ url('/js/api/facebook.js') }}" type="text/babel"></script>
 
