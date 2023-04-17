@@ -23,11 +23,6 @@
         </div>
     </div>
     <div id="reactNoticia">
-         <div className="text-center" style="height: 200px">
-            <div className="spinner-border m-5" style="width:3rem, height:3rem" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>
-        </div>
     </div>
 </div>
 <script src="{{ url('/js/api/nota02.js') }}" type="text/babel"></script>
