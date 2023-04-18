@@ -29,6 +29,11 @@ const InformacionFinanciera = () => {
             }
         })
         .catch((error) => console.log(error)); */
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const anio = urlParams.get("year");
+
+        console.log("Obtener información año: ", anio);
 
         const data = [
             {

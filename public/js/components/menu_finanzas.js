@@ -28,11 +28,18 @@ class Inicio extends React.Component {
             <div className="container">
                 <div className="bd-highlight yearFisc text-center">
                     <Row>
-                    {this.state.aniosVisible.map((anioActual) =>{
+                    {this.state.aniosVisible.map((anioActual) => {
+                        const url = `${window.location.host}/transparencia/finanzas${anioActual >= 2023 ? `?year=${anioActual}` : `/year${anioActual}`}`;
+
                         return (
                             <Col xs={6} sm={6} md={2} lg={2} xl={2} key={anioActual}>
                                 <div key={"anio_"+anioActual} className={"flex-fill bd-highlight" + (anioActual.toString() === this.state.anio.toString() ? " active" : "")}>
-                                    <a href={"year"+anioActual+"?anio="+anioActual} className={anioActual.toString() === this.state.anio.toString() ? "lnkYearSel" : "lnkYear"}>{anioActual}</a>
+                                    <a onClick={(e) => {
+                                        e.preventDefault();
+                                        setTimeout(() => {
+                                            window.location.href = url;
+                                        }, 0);
+                                    }} href={url} className={anioActual.toString() === this.state.anio.toString() ? "lnkYearSel" : "lnkYear"}>{anioActual}</a>
                                 </div>
                             </Col>
                         );
