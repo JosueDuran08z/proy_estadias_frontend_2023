@@ -3,27 +3,27 @@
 
 @font-face {
   font-family: 'Proxima Nova';
-  src: local('Proxima Nova'), local('Proxima Nova'), 
+  src: local('Proxima Nova'), local('Proxima Nova'),
          url(../fontsDD/Proxima-Nova-Reg.otf) format('opentype');
 }
 @font-face {
   font-family: 'Proxima Nova Light';
-  src: local('Proxima Nova Light'), local('Proxima Nova Light'), 
+  src: local('Proxima Nova Light'), local('Proxima Nova Light'),
          url(../fontsDD/Proxima-Nova-Light.otf) format('opentype');
 }
 @font-face {
   font-family: 'Proxima Nova Bold';
-  src: local('Proxima Nova Bold'), local('Proxima Nova Bold'), 
+  src: local('Proxima Nova Bold'), local('Proxima Nova Bold'),
          url(../fontsDD/Proxima-Nova-Bold.otf) format('opentype');
 }
 @font-face {
   font-family: 'Proxima Nova XBold';
-  src: local('Proxima Nova XBold'), local('Proxima Nova XBold'), 
+  src: local('Proxima Nova XBold'), local('Proxima Nova XBold'),
          url(../fontsDD/Proxima-Nova-Xbold.otf) format('opentype');
 }
 @font-face {
   font-family: 'Proxima Nova Thin';
-  src: local('Proxima Nova Thin'), local('Proxima Nova Thin'), 
+  src: local('Proxima Nova Thin'), local('Proxima Nova Thin'),
          url(../fontsDD/Proxima-Nova-Thin.otf) format('opentype');
 }
 .rro{
@@ -245,7 +245,7 @@ ul.ultransparencia li {
     height: 55px;
     padding: 11px 12px;
     font-family: 'Proxima Nova XBold';
-    font-size: x-large;
+    font-size: 16px;
 }
 .lt-head-fin{
   background-color: #142391;
@@ -281,7 +281,7 @@ ul.ultransparencia li {
   margin-bottom: 0px;
 
   color: #000ea7;
-  
+
 }
 
 .row-linXXL a label:hover{
@@ -311,7 +311,7 @@ cursor: pointer;
     margin-bottom: 0px;
 
     color: #000ea7;
-    
+
 }
 
 .row-lin a label:hover{
@@ -524,10 +524,10 @@ cursor: pointer;
     padding-left: 10px;
 }
 .slider-destacados .col-sm-8{
-  
+
 }
 .slider-destacados .col-sm-4{
- 
+
 }
 .swiper-container{
   height: 360px;
@@ -723,7 +723,7 @@ ul.ultransparencia li a {
   .sfi-ico1, .sfi-ico2, .sfi-ico3 {
     margin-bottom: 10px;
   }
-  /* Accesibilidad Mobil */ 
+  /* Accesibilidad Mobil */
     .accesibilidadM{
         display: inline-block !important;
     }

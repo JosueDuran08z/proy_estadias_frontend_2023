@@ -174,7 +174,7 @@ $router->get('transparencia/compras_publicas', function () use ($router) {
 });
 
 $router->get('transparencia/finanzas', function () use ($router) {
-    return view('transparencia/finanzas');
+    return view('transparencia/finanzas/informacion_financiera');
 });
 
 $router->get('transparencia/finanzas/year2022', function () use ($router) {

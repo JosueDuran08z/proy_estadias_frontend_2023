@@ -23,7 +23,6 @@
                     <article class="formato-contenidos text-justify">
                         <h1 class="tit-menu text-center lt-head">Ejercicios Fiscales</h1>
                         <div id="reactArea"></div>
-
                         <h2>Información Anual</h2>
                         <h4>Transparencia y Difusión de la Información Financiera LGCG</h4>
 
@@ -142,8 +141,8 @@
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-pdf-fill documento text-danger"
                                                         title="Archivo PDF"></i></a>
-                                                        
-                                                        
+
+
                                                 <a href="{{ url('/documentos/finanzas/2022/1er-trimestre-2022/2-Egreso/2.5.xlsx') }}"
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
@@ -157,8 +156,8 @@
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-pdf-fill documento text-danger"
                                                         title="Archivo PDF"></i></a>
-                                                        
-                                                        
+
+
                                                 <a href="{{ url('/documentos/finanzas/2022/1er-trimestre-2022/2-Egreso/2.6.xlsx') }}"
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
@@ -767,8 +766,8 @@
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
                                                         title="Archivo Excel"></i></a>
-                                                        
-                                                        
+
+
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <a href="{{ url('/documentos/finanzas/2022/2do-Trimestre-2022/B-2-Informacon-Presupuestal/B.2.1.pdf') }}"
@@ -778,7 +777,7 @@
                                                 <a href="{{ url('/documentos/finanzas/2022/2do-Trimestre-2022/B-2-Informacon-Presupuestal/B.2.1.xlsx') }}"
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
-                                                        title="Archivo Excel"></i></a>     
+                                                        title="Archivo Excel"></i></a>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <a href="{{ url('/documentos/finanzas/2022/3er-Trimestre-2022/B-2-Informacon-Presupuestal/B.2.1.pdf') }}"
@@ -788,7 +787,7 @@
                                                 <a href="{{ url('/documentos/finanzas/2022/3er-Trimestre-2022/B-2-Informacon-Presupuestal/B.2.1.xlsx') }}"
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
-                                                        title="Archivo Excel"></i></a> 
+                                                        title="Archivo Excel"></i></a>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <a href="{{ url('/documentos/finanzas/2022/4to-Trimestre-2022/B-2-Informacon-Presupuestal/B.2.1.pdf') }}"
@@ -799,7 +798,7 @@
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
                                                         title="Archivo Excel"></i>
-                                                </a> 
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -1373,7 +1372,7 @@
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
                                                         title="Archivo Excel"></i>
-                                                </a>    
+                                                </a>
                                             </td>
                                             <td style="width: 10%;" class="text-center">
                                                 <a href="{{ url('/documentos/finanzas/2022/4to-Trimestre-2022/B-4-Inventario-Bienes/B.4.1.pdf') }}"
@@ -1384,7 +1383,7 @@
                                                     target="_blank"><i
                                                         class="bi bi-file-earmark-excel-fill documento text-success"
                                                         title="Archivo Excel"></i>
-                                                </a> 
+                                                </a>
                                             </td>
                                         </tr>
                                         <tr>

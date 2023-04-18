@@ -1,0 +1,652 @@
+[
+    {
+      "id_seccion": 10,
+      "seccion": "Información Anual",
+      "rubros": [
+        {
+          "id_rubro": 16,
+          "rubro": "Ingreso",
+          "elementos": [
+            {
+              "id_elemento": 61,
+              "elemento": "Iniciativa de Ingresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["Estadias 2023.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 62,
+              "elemento": "Información Adicional a la Iniciativa de Ingresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": []
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 63,
+              "elemento": "Dictámenes Acuerdo y Actas ",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": [
+                    "Entrega de Informe Final de Estadía al Centro de Información.pdf.pdf"
+                  ]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 64,
+              "elemento": "Ley de Ingresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["Josué Israel Durán Alberto.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 65,
+              "elemento": "Calendario de Ingresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": [
+                    "Josué Israel Durán Alberto.pdf.pdf",
+                    "excel1.xlsx.xlsx"
+                  ]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 17,
+          "rubro": "Egreso",
+          "elementos": [
+            {
+              "id_elemento": 66,
+              "elemento": "Proyecto de presupuesto de egresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["archivo1.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 67,
+              "elemento": "Información Adicional al proyecto de presupuesto de egresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": []
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 18,
+          "rubro": "Presupuesto Basado en Resultados",
+          "elementos": [
+            {
+              "id_elemento": 68,
+              "elemento": "PBR",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["Estadias 2023.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 19,
+          "rubro": "Información Disciplina Financiera",
+          "elementos": [
+            {
+              "id_elemento": 69,
+              "elemento": "Proyecciones de Ingresos",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["excel1.xlsx.xlsx", "archivo1.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 70,
+              "elemento": "Proyecciones de Egresos\t",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["excel1.xlsx.xlsx", "archivo2.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_seccion": 11,
+      "seccion": "Información Trimestral",
+      "rubros": [
+        {
+          "id_rubro": 20,
+          "rubro": "Información contable",
+          "elementos": [
+            {
+              "id_elemento": 71,
+              "elemento": "Estado de actividades/Resultados",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo3.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo3.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 72,
+              "elemento": "Estado de situación financiera",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 73,
+              "elemento": "Estado de variación en la hacienda pública\t",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 74,
+              "elemento": "Notas a los estados financieros:",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": []
+                }
+              ],
+              "subelementos": [
+                {
+                  "id_subelemento": 16,
+                  "subelemento": "Desglose y Memoria",
+                  "link": null,
+                  "periodos": [
+                    {
+                      "periodo": "1er.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    },
+                    {
+                      "periodo": "2do.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    },
+                    {
+                      "periodo": "3er.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    },
+                    {
+                      "periodo": "4to.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    }
+                  ]
+                },
+                {
+                  "id_subelemento": 17,
+                  "subelemento": "Gestión Administrativa",
+                  "link": null,
+                  "periodos": [
+                    {
+                      "periodo": "1er.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    },
+                    {
+                      "periodo": "2do.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    },
+                    {
+                      "periodo": "3er.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    },
+                    {
+                      "periodo": "4to.Trim",
+                      "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id_rubro": 21,
+          "rubro": "Información presupuestaria",
+          "elementos": [
+            {
+              "id_elemento": 75,
+              "elemento": "Estado analítico de ingresos CE",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 76,
+              "elemento": "Estado analítico de ingresos CFF\t",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo1.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 22,
+          "rubro": "Información programática",
+          "elementos": [
+            {
+              "id_elemento": 77,
+              "elemento": "Gasto por categoría programática",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 78,
+              "elemento": "Programas y proyectos de inversión",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 23,
+          "rubro": "Inventario de bienes",
+          "elementos": [
+            {
+              "id_elemento": 79,
+              "elemento": "Relación de Bienes Muebles",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 24,
+          "rubro": "Ejercicio presupuestario",
+          "elementos": [
+            {
+              "id_elemento": 80,
+              "elemento": "Ejercicios presupuestarios",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 81,
+              "elemento": "Aportación Federal para la Salud",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": []
+                }
+              ],
+              "subelementos": []
+            },
+            {
+              "id_elemento": 82,
+              "elemento": "Aportación a la Infraestructura Social (FAIS)\t",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": []
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": []
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 25,
+          "rubro": "Información Disciplina Financiera",
+          "elementos": [
+            {
+              "id_elemento": 83,
+              "elemento": "Estado de Situación financiera",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "2do.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "3er.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                },
+                {
+                  "periodo": "4to.Trim",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_seccion": 12,
+      "seccion": "Cuenta Pública",
+      "rubros": [
+        {
+          "id_rubro": 26,
+          "rubro": "Cuenta Pública",
+          "elementos": [
+            {
+              "id_elemento": 84,
+              "elemento": "Cuenta Publica",
+              "link": "http://portaldgi.guanajuato.gob.mx/CuentaPublica/public/main",
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": []
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 27,
+          "rubro": "Información Disciplina Financiera",
+          "elementos": [
+            {
+              "id_elemento": 85,
+              "elemento": "Guía de cumplimiento",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["archivo2.pdf.pdf", "excel1.xlsx.xlsx"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        },
+        {
+          "id_rubro": 28,
+          "rubro": "Manual de Contabilidad",
+          "elementos": [
+            {
+              "id_elemento": 87,
+              "elemento": "Manual de Contabilidad del INAEBA",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "Descarga",
+                  "archivos": ["archivo2.pdf.pdf"]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_seccion": 13,
+      "seccion": "Información Semestral",
+      "rubros": [
+        {
+          "id_rubro": 29,
+          "rubro": "Información Disciplina Financiera",
+          "elementos": [
+            {
+              "id_elemento": 88,
+              "elemento": "Dictámenes Acuerdo y Actas",
+              "link": null,
+              "periodos": [
+                {
+                  "periodo": "1er.Semestre",
+                  "archivos": [
+                    "Plantilla_del_informe_final_Lic-Ing_Leon_2022_.docx.docx",
+                    "Estadias 2023.pdf.pdf"
+                  ]
+                },
+                {
+                  "periodo": "2do.Semestre",
+                  "archivos": [
+                    "excel1.xlsx.xlsx",
+                    "Plantilla_del_informe_final_Lic-Ing_Leon_2022_.docx.docx"
+                  ]
+                }
+              ],
+              "subelementos": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
