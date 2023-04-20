@@ -442,6 +442,90 @@ const InformacionFinanciera = () => {
                         ]
                     }
                 ]
+            },
+            {
+                "id_seccion": 5,
+                "seccion": "Información Mensual",
+                "rubros": [
+                    {
+                        "id_rubro": 15,
+                        "rubro": "Inventario de bienes",
+                        "elementos": [
+                            {
+                                "id_elemento": 17,
+                                "elemento": "Estado de situación financiera",
+                                "link": null,
+                                "periodos": [],
+                                "subelementos": [
+                                    {
+                                        "id_subelemento": 4,
+                                        "subelemento": "Desglose y Memoria",
+                                        "link": null,
+                                        "periodos": []
+                                    }
+                                ]
+                            },
+                            {
+                                "id_elemento": 18,
+                                "elemento": "Estado de Actividades/Resultados",
+                                "link": null,
+                                "periodos": [
+                                    {
+                                        "periodo": "1er.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "2do.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "3er.Mes",
+                                        "archivos": [
+                                            "MpUBJqajQ4KDUGmpSpnsaBl9flwLtOb1URBuIJx8.pdf"
+                                        ]
+                                    },
+                                    {
+                                        "periodo": "4to.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "5to.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "6to.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "7mo.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "8vo.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "9no.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "10mo.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "11vo.Mes",
+                                        "archivos": []
+                                    },
+                                    {
+                                        "periodo": "12vo.Mes",
+                                        "archivos": []
+                                    }
+                                ],
+                                "subelementos": []
+                            }
+                        ]
+                    }
+                ]
             }
         ]
 
@@ -452,6 +536,7 @@ const InformacionFinanciera = () => {
     const getNombrePeriodo = (periodo) => {
         periodo = periodo.toUpperCase();
         const periodos = {
+            "MES": "Mes",
             "BIME": "Bimestre",
             "TRIM": "Trim",
             "CUAT": "Cuatrimestre",
@@ -461,11 +546,51 @@ const InformacionFinanciera = () => {
         return periodos[periodo];
     }
 
+    const getPeriodosElemento = (elementos) => {
+        let encabezadosColumna2 = ["Descarga"];
+
+        if (elementos && elementos.length) {
+            for (let i = 0; i <= elementos.length; i++) {
+                if (elementos[i].link) {
+                    encabezadosColumna2 = ["Ir a"];
+                    break;
+                }
+
+                let periodos = elementos[i].periodos;
+
+                if (
+                    elementos.length == 1 &&
+                    periodos.length == 4 &&
+                    !periodos[0].archivos.length &&
+                    periodos[1].archivos.length &&
+                    !periodos[2].archivos.length &&
+                    periodos[3].archivos.length
+                ) {
+                    encabezadosColumna2 = ["1er. Semestre", "2do. Semestre"];
+                    break;
+                }
+
+                if (periodos.length) {
+                    let periodosAux = [];
+
+                    for (let j = 0; j < periodos.length; j++) {
+                        periodosAux.push(periodos[j].periodo);
+                    }
+
+                    encabezadosColumna2 = periodosAux;
+                    break;
+                }
+            }
+        }
+
+        return encabezadosColumna2.length;
+    }
+
     const getEncabezadoTabla = (elementos) => {
         let encabezadoColumna1 = "Documento";
         let encabezadosColumna2 = ["Descarga"];
 
-        if (elementos.length) {
+        if (elementos && elementos.length) {
             for (let i = 0; i <= elementos.length; i++) {
                 if (elementos[i].link) {
                     encabezadoColumna1 = "Nombre";
@@ -677,14 +802,20 @@ const InformacionFinanciera = () => {
                 );
             }
         } else {
-            columnas.push(
-                <td className="text-center" style={{ width: anchoColumnaArchivo }}>
-                    <i
-                        className="bi bi-slash-circle-fill documento text-danger"
-                        title="No aplica"
-                    ></i>
-                </td>
-            );
+            console.log("No aplica: ", getPeriodosElemento(elementos))
+            const numPeriodos = getPeriodosElemento(elementos);
+
+            for (let i = 0; i < numPeriodos; i++) {
+                columnas.push(
+                    <td className="text-center" style={{ width: anchoColumnaArchivo }}>
+                        <i
+                            className="bi bi-slash-circle-fill documento text-danger"
+                            title="No aplica"
+                        ></i>
+                    </td>
+                );
+            }
+
         }
 
         return <tr>{columnas.map((columna) => columna)}</tr>;
@@ -708,14 +839,14 @@ const InformacionFinanciera = () => {
                         const { seccion, rubros } = data;
 
                         return (
-                            rubros.length && rubros[0].elementos.length ?
+                            rubros.length && rubros[0].elementos && rubros[0].elementos.length ?
                             <>
                                 <h2>{ seccion }</h2>
                                 { i == 0 ? <h4>Transparencia y Difusión de la Información Financiera LGCG</h4> : <></> }
                                 <div className="wrapper grid3">
                                     {
                                         rubros.map(({ rubro, elementos }) =>  (
-                                            elementos.length ?
+                                            elementos && elementos.length ?
                                             <>
                                                 { (rubro.toUpperCase().trim() != elementos[0]?.elemento.toUpperCase().trim()) && (!rubro.toUpperCase().trim().includes("CUENTA PÚBLICA" || "CUENTA PUBLICA")) ? <p className="tittle-tra tabtit2">{ rubro }</p> : <></> }
                                                 <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 mx-auto">
@@ -733,7 +864,7 @@ const InformacionFinanciera = () => {
                             <></>
                         )
                     })
-                 : <></>
+                : <></>
             }
         </>
     );
