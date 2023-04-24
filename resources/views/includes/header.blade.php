@@ -117,7 +117,7 @@
                                             title="Compras públicas">Compras
                                             Públicas</a></li>
                                     <li style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"
-                                            href="{{ url('/transparencia/finanzas/year2022?anio=2022') }}"
+                                            href="{{ url('/transparencia/finanzas?year=2023') }}"
                                             id="linkFinanzas" title="Información Financiera">Información Financiera</a>
                                     </li>
                                     <li style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"
@@ -137,7 +137,7 @@
 CARGA DE INFORMACIÓN EN EL SISTEMA INFORMÁTICO DE CONTRALORÍA SOCIAL (SICS)</a></li>
 
 
-                                            
+
                                 </ul>
                                 <!--</li>-->
                                 <!--ventana--Z>
@@ -230,8 +230,8 @@ CARGA DE INFORMACIÓN EN EL SISTEMA INFORMÁTICO DE CONTRALORÍA SOCIAL (SICS)</
                                             href="{{ url('/transparencia/compras_publicas') }}"
                                             title="Compras públicas">Compras
                                             Públicas</a></li>
-                                    <li style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"
-                                            href="{{ url('/transparencia/finanzas/year2022?anio=2022') }}"
+                                    <li id="li-informacion-financiera" style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"
+                                            href="{{ url('/transparencia/finanzas') }}"
                                             id="linkFinanzas" title="Información Financiera">Información Financiera</a>
                                     </li>
                                     <li style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"
@@ -521,8 +521,4 @@ box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.16), 0px 2px 8px 0px rgba(0,0,0,0.12);
         <div class="barC1"></div>
         <div class="barC2"></div>
     </div>
-
-
-
-
 </header>

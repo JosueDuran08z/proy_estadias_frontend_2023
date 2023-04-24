@@ -5,9 +5,30 @@ const InformacionFinanciera = () => {
     const [cargando, setCargando] = useState(true);
     const [informacionFinanciera, setInformacionFinanciera] = useState([]);
     const URL_API_TOKEN =
-    'https://dhernandeza.inaeba.edu.mx/security/login?usuario=root@inaeba.edu.mx&password=root@ine1024';
-    const URL_API_INFORMACION_FINANCIERA = 'https://dhernandeza.inaeba.edu.mx/public/getNoticiaActiva/';
-    const URL_API_STORAGE = 'https://storage.inaeba.edu.mx/public/getFile/';
+    "https://dhernandeza.inaeba.edu.mx/security/login?usuario=root@inaeba.edu.mx&password=root@ine1024";
+    const URL_API_INFORMACION_FINANCIERA = "https://dhernandeza.inaeba.edu.mx/public/getNoticiaActiva/";
+    const URL_API_STORAGE = "https://storage.inaeba.edu.mx/public/getFile/";
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const anio = urlParams.get("year");
+
+    const ordenarInformacionFinanciera = (data) => {
+        data.sort((a, b) => a.id_seccion - b.id_seccion);
+
+        for (let i = 0; i < data.length; i++) {
+            data[i].rubros.sort((a, b) => a.id_rubro - b.id_rubro);
+
+            for (let j = 0; j < data[i].rubros.length; j++) {
+                data[i].rubros[j].elementos.sort((a, b) => a.id_elemento - b.id_elemento);
+
+                for (let k = 0; k < data[i].rubros[j].elementos.length; k++) {
+                    data[i].rubros[j].elementos[k].subelementos.sort((a, b) => a.id_subelemento - b.id_subelemento);
+                }
+            }
+        }
+
+        return data;
+    }
 
     const getInformacionFinanciera = () => {
         /* axios
@@ -15,13 +36,17 @@ const InformacionFinanciera = () => {
         .then(({ data: { access_token } }) => {
             if (access_token) {
                 axios
-                .get(`${URL_API_INFORMACION_FINANCIERA + idNoticia}`, {
+                .get(`${URL_API_INFORMACION_FINANCIERA + anio}`, {
                     headers: {
                         Authorization: `Bearer ${access_token}`,
                     },
                 })
                 .then(({ data }) => {
-                    if (data) setInformacionFinanciera(data);
+                    if (data) {
+                        data = ordenarInformacionFinanciera(data);
+                        setInformacionFinanciera(data);
+                        setCargando(false);
+                    }
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -29,10 +54,8 @@ const InformacionFinanciera = () => {
             }
         })
         .catch((error) => console.log(error)); */
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const anio = urlParams.get("year");
-        const data = [
+
+        let data = [
             {
                 "id_seccion": 1,
                 "seccion": "Información Anual",
@@ -270,17 +293,20 @@ const InformacionFinanciera = () => {
                                             {
                                                 "periodo": "1er.Trim",
                                                 "archivos": [
-                                                    "rjsBEsFbmYv2NeZgdgjfgPdZYgfpEhCMK2aFP9Ay.pdf",
-                                                    "fBceNFMl1LjTXigmJ0xo2GOlqxa5DLaF3z04Shfd.xlsx"
+                                                    "8sQacnNWZbq6IXaobbC3TwXLn3TLoxXGnGCDI8TY.pdf"
                                                 ]
                                             },
                                             {
                                                 "periodo": "2do.Trim",
-                                                "archivos": []
+                                                "archivos": [
+                                                    "ClpoExXKsyepiT4VnHU0yuFK9wcN1EFrhi7O7YDm.xlsx"
+                                                ]
                                             },
                                             {
                                                 "periodo": "3er.Trim",
-                                                "archivos": []
+                                                "archivos": [
+                                                    "Jl4fZohPRX7YDM3heJuhJVzAYGtTr2CYMQAtQxGl.doc"
+                                                ]
                                             },
                                             {
                                                 "periodo": "4to.Trim",
@@ -292,27 +318,7 @@ const InformacionFinanciera = () => {
                                         "id_subelemento": 2,
                                         "subelemento": "Gestión Administrativa",
                                         "link": null,
-                                        "periodos": [
-                                            {
-                                                "periodo": "1er.Trim",
-                                                "archivos": [
-                                                    "1XblS3UYylXthgcbIzS1AKgOYjap1SirBrIlckF8.pdf",
-                                                    "1niUfL2uN5FXktWC3qAFpNph4N8beP3zfDKX6YjQ.doc"
-                                                ]
-                                            },
-                                            {
-                                                "periodo": "2do.Trim",
-                                                "archivos": []
-                                            },
-                                            {
-                                                "periodo": "3er.Trim",
-                                                "archivos": []
-                                            },
-                                            {
-                                                "periodo": "4to.Trim",
-                                                "archivos": []
-                                            }
-                                        ]
+                                        "periodos": []
                                     }
                                 ]
                             }
@@ -438,6 +444,13 @@ const InformacionFinanciera = () => {
                                     }
                                 ],
                                 "subelementos": []
+                            },
+                            {
+                                "id_elemento": 22,
+                                "elemento": "Ley de Ingresos",
+                                "link": null,
+                                "periodos": [],
+                                "subelementos": []
                             }
                         ]
                     }
@@ -452,83 +465,30 @@ const InformacionFinanciera = () => {
                         "rubro": "Inventario de bienes",
                         "elementos": [
                             {
-                                "id_elemento": 17,
-                                "elemento": "Estado de situación financiera",
+                                "id_elemento": 21,
+                                "elemento": "Estado de Actividades/Resultados",
                                 "link": null,
                                 "periodos": [],
                                 "subelementos": [
                                     {
-                                        "id_subelemento": 4,
-                                        "subelemento": "Desglose y Memoria",
-                                        "link": null,
+                                        "id_subelemento": 8,
+                                        "subelemento": "Ingreso",
+                                        "link": "http://172.28.8.87:4400/subelemento/index/2023",
                                         "periodos": []
-                                    }
+                                    },
                                 ]
-                            },
-                            {
-                                "id_elemento": 18,
-                                "elemento": "Estado de Actividades/Resultados",
-                                "link": null,
-                                "periodos": [
-                                    {
-                                        "periodo": "1er.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "2do.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "3er.Mes",
-                                        "archivos": [
-                                            "MpUBJqajQ4KDUGmpSpnsaBl9flwLtOb1URBuIJx8.pdf"
-                                        ]
-                                    },
-                                    {
-                                        "periodo": "4to.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "5to.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "6to.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "7mo.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "8vo.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "9no.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "10mo.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "11vo.Mes",
-                                        "archivos": []
-                                    },
-                                    {
-                                        "periodo": "12vo.Mes",
-                                        "archivos": []
-                                    }
-                                ],
-                                "subelementos": []
                             }
                         ]
                     }
                 ]
+            },
+            {
+                "id_seccion": 6,
+                "seccion": "Información Bimestral",
+                "rubros": []
             }
-        ]
-
+        ];
+        data = ordenarInformacionFinanciera(data);
         setInformacionFinanciera(data);
         setCargando(false);
     }
@@ -540,77 +500,79 @@ const InformacionFinanciera = () => {
             "BIME": "Bimestre",
             "TRIM": "Trim",
             "CUAT": "Cuatrimestre",
-            "SEME": "Semestre",
+            "SEME": "Semestre"
         }
 
         return periodos[periodo];
     }
 
-    const getPeriodosElemento = (elementos) => {
-        let encabezadosColumna2 = ["Descarga"];
+    const getNumPeriodosElemento = (elementos) => {
+        let numEncabezadosColumna2 = [1];
 
         if (elementos && elementos.length) {
             for (let i = 0; i <= elementos.length; i++) {
-                if (elementos[i].link) {
-                    encabezadosColumna2 = ["Ir a"];
-                    break;
-                }
+                if (elementos[i]?.link)
+                    numEncabezadosColumna2.push(1);
 
-                let periodos = elementos[i].periodos;
+                let periodos = elementos[i]?.periodos;
 
                 if (
+                    elementos &&
                     elementos.length == 1 &&
+                    periodos &&
                     periodos.length == 4 &&
                     !periodos[0].archivos.length &&
                     periodos[1].archivos.length &&
                     !periodos[2].archivos.length &&
                     periodos[3].archivos.length
-                ) {
-                    encabezadosColumna2 = ["1er. Semestre", "2do. Semestre"];
-                    break;
-                }
+                )
+                    numEncabezadosColumna2.push(2);
 
-                if (periodos.length) {
+                if (periodos && periodos.length) {
                     let periodosAux = [];
 
                     for (let j = 0; j < periodos.length; j++) {
                         periodosAux.push(periodos[j].periodo);
                     }
 
-                    encabezadosColumna2 = periodosAux;
-                    break;
+                    numEncabezadosColumna2.push(periodosAux.length);
                 }
             }
         }
 
-        return encabezadosColumna2.length;
+        numEncabezadosColumna2 = Math.max(...numEncabezadosColumna2);
+
+        return numEncabezadosColumna2;
     }
 
     const getEncabezadoTabla = (elementos) => {
         let encabezadoColumna1 = "Documento";
         let encabezadosColumna2 = ["Descarga"];
+        let encabezadosSubelementos = [];
 
         if (elementos && elementos.length) {
-            for (let i = 0; i <= elementos.length; i++) {
-                if (elementos[i].link) {
+            for (let i = 0; i <= elementos?.length; i++) {
+                if (elementos[i]?.link) {
                     encabezadoColumna1 = "Nombre";
                     encabezadosColumna2 = ["Ir a"];
                     break;
                 }
 
-                let periodos = elementos[i].periodos;
+                let periodos = elementos[i]?.periodos;
 
-                if (periodos.length > 1) {
+                if (periodos && periodos?.length > 1) {
                     periodos = periodos.map(({ periodo, archivos }) => {
                         let periodoAux = periodo.split(".");
-                        periodoAux = `${periodoAux[0]}. ${getNombrePeriodo(periodoAux[1])}${periodos.length == 4 ? "." : ""}`;
+                        periodoAux = `${periodoAux[0]}. ${getNombrePeriodo(periodoAux[1])}${periodos?.length == 4 ? "." : ""}`;
 
                         return { periodo: periodoAux, archivos };
                     });
                 }
 
                 if (
+                    elementos &&
                     elementos.length == 1 &&
+                    periodos &&
                     periodos.length == 4 &&
                     !periodos[0].archivos.length &&
                     periodos[1].archivos.length &&
@@ -621,7 +583,7 @@ const InformacionFinanciera = () => {
                     break;
                 }
 
-                if (periodos.length) {
+                if (periodos && periodos.length) {
                     let periodosAux = [];
 
                     for (let j = 0; j < periodos.length; j++) {
@@ -631,8 +593,18 @@ const InformacionFinanciera = () => {
                     encabezadosColumna2 = periodosAux;
                     break;
                 }
+
+                if (elementos[i]?.subelementos && elementos[i]?.subelementos.length)
+                    encabezadosSubelementos = [...encabezadosSubelementos, getEncabezadoSubelementos(elementos[i].subelementos)];
             }
         }
+
+        if (encabezadosSubelementos.length)
+            encabezadosSubelementos = encabezadosSubelementos.reduce((anterior, actual) => actual.length > anterior.length ? actual : anterior, []);
+
+        encabezadosColumna2 = encabezadosColumna2.length > encabezadosSubelementos.length ? encabezadosColumna2 : encabezadosSubelementos;
+
+        if (!Array.isArray(encabezadosColumna2)) encabezadosColumna2 = [encabezadosColumna2];
 
         const claseColumna2 = encabezadosColumna2.length == 1 ? "text-center" : "";
 
@@ -645,7 +617,61 @@ const InformacionFinanciera = () => {
                 ))}
               </tr>
             </thead>
-          );
+        );
+    }
+
+    const getEncabezadoSubelementos = (subelementos) => {
+        let encabezadosColumna2 = ["Descarga"];
+
+        if (subelementos && subelementos.length) {
+            for (let i = 0; i <= subelementos?.length; i++) {
+                if (subelementos[i]?.link) {
+                    encabezadosColumna2 = encabezadosColumna2.filter(encabezado => {
+                        if (encabezado != ["Descarga"]) return encabezado
+                    });
+                    encabezadosColumna2 = [...encabezadosColumna2, ["Ir a"]];
+                }
+
+                let periodos = subelementos[i]?.periodos;
+
+                if (periodos && periodos?.length > 1) {
+                    periodos = periodos.map(({ periodo, archivos }) => {
+                        let periodoAux = periodo.split(".");
+                        periodoAux = `${periodoAux[0]}. ${getNombrePeriodo(periodoAux[1])}${periodos?.length == 4 ? "." : ""}`;
+
+                        return { periodo: periodoAux, archivos };
+                    });
+                }
+
+                if (
+                    subelementos &&
+                    subelementos.length == 1 &&
+                    periodos &&
+                    periodos.length == 4 &&
+                    !periodos[0].archivos.length &&
+                    periodos[1].archivos.length &&
+                    !periodos[2].archivos.length &&
+                    periodos[3].archivos.length
+                ) {
+                    encabezadosColumna2 = [...encabezadosColumna2, ["1er. Semestre", "2do. Semestre"]];
+                }
+
+                if (periodos && periodos.length) {
+                    let periodosAux = [];
+
+                    for (let j = 0; j < periodos.length; j++) {
+                        periodosAux.push(periodos[j].periodo);
+                    }
+
+                    encabezadosColumna2 = [...encabezadosColumna2, periodosAux];
+                }
+            }
+        }
+
+        const encabezadosColumna2Aux = encabezadosColumna2.reduce((anterior, actual) => anterior.length > actual.length ? anterior : actual, []);
+        encabezadosColumna2 = encabezadosColumna2Aux;
+
+        return encabezadosColumna2;
     }
 
     const getColumnasTabla = (elementos, elemento) => {
@@ -672,59 +698,71 @@ const InformacionFinanciera = () => {
                 </td>
               </tr>
             );
-
             const subelementos = elemento.subelementos;
 
             for (let j = 0; j < subelementos.length; j++) {
               const periodos = subelementos[j].periodos;
+              const numPeriodos = getNumPeriodosElemento(subelementos)
               const columnasSubelementos = [];
-              const anchoColumnaNombre = periodos.length > 1 ? "60%"  : "80%";
-              const anchoColumnaArchivo = periodos.length > 1 ? "10%"  : "20%";
+              const anchoColumnaNombre = numPeriodos > 1 ? "60%"  : "80%";
+              const anchoColumnaArchivo = numPeriodos > 1 ? "10%"  : "20%";
 
-              for (let k = 0; k < periodos.length; k++) {
-                const archivos = periodos[k].archivos;
-                const archivosPeriodo = [];
+              for (let k = 0; k < numPeriodos; k++) {
+                if (periodos[k]) {
+                    const archivos = periodos[k].archivos;
+                    const archivosPeriodo = [];
 
-                for (let l = 0; l < archivos.length; l++) {
-                  const nombreArchivo = archivos[l].split('.').pop();
-                  let claseIcono = 'bi-file-earmark-pdf-fill text-danger';
-                  let tituloArchivo = 'Archivo PDF';
+                    for (let l = 0; l < archivos.length; l++) {
+                      const nombreArchivo = archivos[l].split(".").pop();
+                      let claseIcono = "bi-file-earmark-pdf-fill text-danger";
+                      let tituloArchivo = "Archivo PDF";
 
-                  if (nombreArchivo == 'xls' || nombreArchivo == 'xlsx') {
-                    claseIcono = 'bi-file-earmark-excel-fill text-success';
-                    tituloArchivo = 'Archivo Excel';
-                  }
+                      if (nombreArchivo == "xls" || nombreArchivo == "xlsx") {
+                        claseIcono = "bi-file-earmark-excel-fill text-success";
+                        tituloArchivo = "Archivo Excel";
+                      }
 
-                  if (nombreArchivo == 'doc' || nombreArchivo == 'docx') {
-                    claseIcono = 'bi-file-earmark-word-fill text-primary';
-                    tituloArchivo = 'Archivo Word';
-                  }
+                      if (nombreArchivo == "doc" || nombreArchivo == "docx") {
+                        claseIcono = "bi-file-earmark-word-fill text-primary";
+                        tituloArchivo = "Archivo Word";
+                      }
 
-                  archivosPeriodo.push(
-                    <a
-                      href={URL_API_STORAGE + archivos[k]}
-                      target="_blank"
-                    >
-                      <i
-                        className={`bi ${claseIcono} documento`}
-                        title={tituloArchivo}
-                      ></i>
-                    </a>
-                  );
+                      archivosPeriodo.push(
+                        <a
+                          href={URL_API_STORAGE + archivos[k]}
+                          target="_blank"
+                        >
+                          <i
+                            className={`bi ${claseIcono} documento`}
+                            title={tituloArchivo}
+                          ></i>
+                        </a>
+                      );
+                    }
+
+                    columnasSubelementos.push(
+                      <td className="text-center" style={{ width: anchoColumnaArchivo }}>
+                        {archivos.length ? (
+                          archivosPeriodo.map((archivoPeriodo) => archivoPeriodo)
+                        ) : (
+                          <i
+                            className="bi bi-slash-circle-fill documento text-danger"
+                            title="No aplica"
+                          ></i>
+                        )}
+                      </td>
+                    );
                 }
-
-                columnasSubelementos.push(
-                  <td className="text-center" style={{ width: anchoColumnaArchivo }}>
-                    {archivos.length ? (
-                      archivosPeriodo.map((archivoPeriodo) => archivoPeriodo)
-                    ) : (
-                      <i
-                        className="bi bi-slash-circle-fill documento text-danger"
-                        title="No aplica"
-                      ></i>
-                    )}
-                  </td>
-                );
+                else {
+                    columnasSubelementos.push(
+                        <td className="text-center" style={{ width: anchoColumnaArchivo }}>
+                            <i
+                                className="bi bi-slash-circle-fill documento text-danger"
+                                title="No aplica"
+                            ></i>
+                        </td>
+                    );
+                }
               }
 
               columnas.push(
@@ -738,11 +776,13 @@ const InformacionFinanciera = () => {
             return columnas;
         }
 
-        columnas.push(<td style={{ width: elemento.periodos.length > 1 ? "60%"  : "80%" }}>{elemento.elemento}</td>);
+        columnas.push(<td style={{ width: elemento.periodos?.length > 1 ? "60%"  : "80%" }}>{elemento.elemento}</td>);
         let periodos = elemento.periodos;
 
         if (
+        elementos &&
         elementos.length == 1 &&
+        periodos &&
         periodos.length == 4 &&
         !periodos[0].archivos.length &&
         periodos[1].archivos.length &&
@@ -753,31 +793,31 @@ const InformacionFinanciera = () => {
             periodos = periodosAux;
         }
 
-        const anchoColumnaArchivo = periodos.length > 1 ? "10%"  : "20%";
+        const anchoColumnaArchivo = periodos?.length > 1 ? "10%"  : "20%";
 
-        if (periodos.length) {
+        if (periodos && periodos.length) {
             for (let j = 0; j < periodos.length; j++) {
                 const archivos = periodos[j].archivos;
                 const archivosPeriodo = [];
 
                 for (let k = 0; k < archivos.length; k++) {
-                    const nombreArchivo = archivos[k].split('.').pop();
-                    let claseIcono = 'bi-file-earmark-pdf-fill text-danger';
-                    let tituloArchivo = 'Archivo PDF';
+                    const nombreArchivo = archivos[k].split(".").pop();
+                    let claseIcono = "bi-file-earmark-pdf-fill text-danger";
+                    let tituloArchivo = "Archivo PDF";
 
-                    if (nombreArchivo == 'xls' || nombreArchivo == 'xlsx') {
-                        claseIcono = 'bi-file-earmark-excel-fill text-success';
-                        tituloArchivo = 'Archivo Excel';
+                    if (nombreArchivo == "xls" || nombreArchivo == "xlsx") {
+                        claseIcono = "bi-file-earmark-excel-fill text-success";
+                        tituloArchivo = "Archivo Excel";
                     }
 
-                    if (nombreArchivo == 'doc' || nombreArchivo == 'docx') {
-                        claseIcono = 'bi-file-earmark-word-fill text-primary';
-                        tituloArchivo = 'Archivo Word';
+                    if (nombreArchivo == "doc" || nombreArchivo == "docx") {
+                        claseIcono = "bi-file-earmark-word-fill text-primary";
+                        tituloArchivo = "Archivo Word";
                     }
 
                     archivosPeriodo.push(
                     <a
-                        href={`http://storage.inaeba.edu.mx//public/getFile/${archivos[k]}`}
+                        href={`${URL_API_STORAGE + archivos[k]}`}
                         target="_blank"
                     >
                         <i
@@ -802,8 +842,7 @@ const InformacionFinanciera = () => {
                 );
             }
         } else {
-            console.log("No aplica: ", getPeriodosElemento(elementos))
-            const numPeriodos = getPeriodosElemento(elementos);
+            const numPeriodos = getNumPeriodosElemento(elementos);
 
             for (let i = 0; i < numPeriodos; i++) {
                 columnas.push(
@@ -815,7 +854,6 @@ const InformacionFinanciera = () => {
                     </td>
                 );
             }
-
         }
 
         return <tr>{columnas.map((columna) => columna)}</tr>;
@@ -839,14 +877,14 @@ const InformacionFinanciera = () => {
                         const { seccion, rubros } = data;
 
                         return (
-                            rubros.length && rubros[0].elementos && rubros[0].elementos.length ?
+                            rubros && rubros.length && rubros[0].elementos && rubros[0].elementos.length ?
                             <>
                                 <h2>{ seccion }</h2>
                                 { i == 0 ? <h4>Transparencia y Difusión de la Información Financiera LGCG</h4> : <></> }
                                 <div className="wrapper grid3">
                                     {
                                         rubros.map(({ rubro, elementos }) =>  (
-                                            elementos && elementos.length ?
+                                            elementos && elementos.length ? (
                                             <>
                                                 { (rubro.toUpperCase().trim() != elementos[0]?.elemento.toUpperCase().trim()) && (!rubro.toUpperCase().trim().includes("CUENTA PÚBLICA" || "CUENTA PUBLICA")) ? <p className="tittle-tra tabtit2">{ rubro }</p> : <></> }
                                                 <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 mx-auto">
@@ -855,7 +893,7 @@ const InformacionFinanciera = () => {
                                                         { getCuerpoTabla(elementos) }
                                                     </table>
                                                 </div>
-                                            </> :
+                                            </>) :
                                             <></>
                                         ))
                                     }
