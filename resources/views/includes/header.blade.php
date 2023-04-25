@@ -231,7 +231,7 @@ CARGA DE INFORMACIÓN EN EL SISTEMA INFORMÁTICO DE CONTRALORÍA SOCIAL (SICS)</
                                             title="Compras públicas">Compras
                                             Públicas</a></li>
                                     <li id="li-informacion-financiera" style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"
-                                            href="{{ url('/transparencia/finanzas') }}"
+                                            href="{{ url('/transparencia/finanzas?year=2023') }}"
                                             id="linkFinanzas" title="Información Financiera">Información Financiera</a>
                                     </li>
                                     <li style="display:block; padding: 0.25rem 1rem;"><a class="dropdown-item li-header"

@@ -76,9 +76,7 @@ const Noticias = () => {
         .catch((error) => console.log(error));
     };
 
-    const getNoticia = (idNoticia) => {
-        window.location.href = `./nota/${idNoticia}`;
-    };
+    const getNoticia = (idNoticia) => window.location.href = `./nota/${idNoticia}`;
 
     const inicializarDatePicker = () => {
         $(".date-picker").datepicker({

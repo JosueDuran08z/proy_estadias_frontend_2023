@@ -15,7 +15,7 @@ const Banners = () => {
     }
 
     const getBanners = () => {
-        /* axios.get(URL_API_BANNERS, {
+        axios.get(URL_API_BANNERS, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -27,41 +27,7 @@ const Banners = () => {
         .catch(error => {
             setCargando(false);
             console.log(error);
-        }); */
-        const data = [
-            {
-                id: 1,
-                url: "https://api.github.com/",
-                nombre_archivo: "X0ldYUvf5Atc5KBaqrjoAL2yfOTaL06G6B4Q7SxH.png",
-                descripcion: "Banner 01"
-            },
-            {
-                id: 2,
-                url: "https://api.github.com/",
-                nombre_archivo: "Czi1Oy9t03CkZWXk9Yzs4fSGNsEidHW0AuU1NeTP.jpg",
-                descripcion: "Banner 02"
-            },
-            {
-                id: 3,
-                url: "https://api.github.com/",
-                nombre_archivo: "jiiAB8LWHAI0OBSPiSuGlkKmczjl3HhbsqdGqH58.png",
-                descripcion: "Banner 03"
-            },
-            {
-                id: 4,
-                url: "https://api.github.com/",
-                nombre_archivo: "g3WT23eYbPNif7SypbGIKo5ed70XVSfREfOkpV6A.png",
-                descripcion: "Banner 04"
-            },
-            {
-                id: 5,
-                url: "https://api.github.com/",
-                nombre_archivo: "WwT9DZg4jKOg2qmkV85XNcwLKhGqezgUkBzw3ls2.png",
-                descripcion: "Banner 05"
-            }
-        ];
-        setCargando(false);
-        setBanners(data);
+        });
     }
 
     useEffect(() => getToken(), []);

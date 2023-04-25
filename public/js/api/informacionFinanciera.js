@@ -451,6 +451,13 @@ const InformacionFinanciera = () => {
                                 "link": null,
                                 "periodos": [],
                                 "subelementos": []
+                            },
+                            {
+                                "id_elemento": 23,
+                                "elemento": "Estado de situación financiera",
+                                "link": "http://172.28.8.87:4400/elemento/index/2023",
+                                "periodos": [],
+                                "subelementos": []
                             }
                         ]
                     }
@@ -471,11 +478,64 @@ const InformacionFinanciera = () => {
                                 "periodos": [],
                                 "subelementos": [
                                     {
-                                        "id_subelemento": 8,
+                                        "id_subelemento": 10,
                                         "subelemento": "Ingreso",
-                                        "link": "http://172.28.8.87:4400/subelemento/index/2023",
-                                        "periodos": []
-                                    },
+                                        "link": null,
+                                        "periodos": [
+                                            {
+                                                "periodo": "1er.Mes",
+                                                "archivos": [
+                                                    "Sobt1UbvOBBZONNs3Uw9yA6DvgnI8RgPZ7YBOUy4.pdf",
+                                                    "M0FHogf4YzzxKPIkS5Wi8Ag1AdU46PKqmD7gtupL.xlsx",
+                                                    "WWJu43503S5gLBNp7CzIoWb46eQZ5qg5Aqz7TjNM.doc"
+                                                ]
+                                            },
+                                            {
+                                                "periodo": "2do.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "3er.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "4to.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "5to.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "6to.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "7mo.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "8vo.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "9no.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "10mo.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "11vo.Mes",
+                                                "archivos": []
+                                            },
+                                            {
+                                                "periodo": "12vo.Mes",
+                                                "archivos": []
+                                            }
+                                        ]
+                                    }
                                 ]
                             }
                         ]
@@ -679,7 +739,7 @@ const InformacionFinanciera = () => {
             return (
                 <tr>
                     <td>{elemento.elemento}</td>
-                    <td style={{ width: "20%" }} className="text-center">
+                    <td colSpan={100} style={{ width: "20%" }} className="text-center">
                         <a href={elemento.link} target="_blank">
                         <i className="documento bi bi-box-arrow-up-right text-dark"></i>
                         </a>
@@ -701,76 +761,88 @@ const InformacionFinanciera = () => {
             const subelementos = elemento.subelementos;
 
             for (let j = 0; j < subelementos.length; j++) {
-              const periodos = subelementos[j].periodos;
-              const numPeriodos = getNumPeriodosElemento(subelementos)
-              const columnasSubelementos = [];
-              const anchoColumnaNombre = numPeriodos > 1 ? "60%"  : "80%";
-              const anchoColumnaArchivo = numPeriodos > 1 ? "10%"  : "20%";
+                const subelemento = subelementos[j];
+                const periodos = subelemento.periodos;
+                const numPeriodos = getNumPeriodosElemento(subelementos)
+                const columnasSubelementos = [];
+                const anchoColumnaNombre = numPeriodos > 1 ? "60%"  : "80%";
+                const anchoColumnaArchivo = numPeriodos > 1 ? "10%"  : "20%";
 
-              for (let k = 0; k < numPeriodos; k++) {
-                if (periodos[k]) {
-                    const archivos = periodos[k].archivos;
-                    const archivosPeriodo = [];
-
-                    for (let l = 0; l < archivos.length; l++) {
-                      const nombreArchivo = archivos[l].split(".").pop();
-                      let claseIcono = "bi-file-earmark-pdf-fill text-danger";
-                      let tituloArchivo = "Archivo PDF";
-
-                      if (nombreArchivo == "xls" || nombreArchivo == "xlsx") {
-                        claseIcono = "bi-file-earmark-excel-fill text-success";
-                        tituloArchivo = "Archivo Excel";
-                      }
-
-                      if (nombreArchivo == "doc" || nombreArchivo == "docx") {
-                        claseIcono = "bi-file-earmark-word-fill text-primary";
-                        tituloArchivo = "Archivo Word";
-                      }
-
-                      archivosPeriodo.push(
-                        <a
-                          href={URL_API_STORAGE + archivos[k]}
-                          target="_blank"
-                        >
-                          <i
-                            className={`bi ${claseIcono} documento`}
-                            title={tituloArchivo}
-                          ></i>
-                        </a>
-                      );
-                    }
-
+                if (subelemento.link != null) {
                     columnasSubelementos.push(
-                      <td className="text-center" style={{ width: anchoColumnaArchivo }}>
-                        {archivos.length ? (
-                          archivosPeriodo.map((archivoPeriodo) => archivoPeriodo)
-                        ) : (
-                          <i
-                            className="bi bi-slash-circle-fill documento text-danger"
-                            title="No aplica"
-                          ></i>
-                        )}
-                      </td>
-                    );
-                }
-                else {
-                    columnasSubelementos.push(
-                        <td className="text-center" style={{ width: anchoColumnaArchivo }}>
-                            <i
-                                className="bi bi-slash-circle-fill documento text-danger"
-                                title="No aplica"
-                            ></i>
+                        <td colSpan={100} style={{ width: "20%" }} className="text-center">
+                            <a href={elemento.link} target="_blank">
+                            <i className="documento bi bi-box-arrow-up-right text-dark"></i>
+                            </a>
                         </td>
                     );
                 }
-              }
+                else {
+                    for (let k = 0; k < numPeriodos; k++) {
+                      if (periodos[k]) {
+                          const archivos = periodos[k].archivos;
+                          const archivosPeriodo = [];
 
-              columnas.push(
-                <tr>
-                  <td style={{ width: anchoColumnaNombre }}>{subelementos[j].subelemento}</td>
-                  {columnasSubelementos.map((columna) => columna)}
-                </tr>
-              );
+                          for (let l = 0; l < archivos.length; l++) {
+                            const nombreArchivo = archivos[l].split(".").pop();
+                            let claseIcono = "bi-file-earmark-pdf-fill text-danger";
+                            let tituloArchivo = "Archivo PDF";
+
+                            if (nombreArchivo == "xls" || nombreArchivo == "xlsx") {
+                              claseIcono = "bi-file-earmark-excel-fill text-success";
+                              tituloArchivo = "Archivo Excel";
+                            }
+
+                            if (nombreArchivo == "doc" || nombreArchivo == "docx") {
+                              claseIcono = "bi-file-earmark-word-fill text-primary";
+                              tituloArchivo = "Archivo Word";
+                            }
+
+                            archivosPeriodo.push(
+                              <a
+                                href={URL_API_STORAGE + archivos[l]}
+                                target="_blank"
+                              >
+                                <i
+                                  className={`bi ${claseIcono} documento`}
+                                  title={tituloArchivo}
+                                ></i>
+                              </a>
+                            );
+                          }
+
+                          columnasSubelementos.push(
+                            <td className="text-center" style={{ width: anchoColumnaArchivo }}>
+                              {archivos.length ? (
+                                archivosPeriodo.map((archivoPeriodo) => archivoPeriodo)
+                              ) : (
+                                <i
+                                  className="bi bi-slash-circle-fill documento text-danger"
+                                  title="No aplica"
+                                ></i>
+                              )}
+                            </td>
+                          );
+                      }
+                      else {
+                          columnasSubelementos.push(
+                              <td className="text-center" style={{ width: anchoColumnaArchivo }}>
+                                  <i
+                                      className="bi bi-slash-circle-fill documento text-danger"
+                                      title="No aplica"
+                                  ></i>
+                              </td>
+                          );
+                      }
+                    }
+                }
+
+                columnas.push(
+                    <tr>
+                    <td style={{ width: anchoColumnaNombre }}>{subelemento.subelemento}</td>
+                    {columnasSubelementos.map((columna) => columna)}
+                    </tr>
+                );
             }
 
             return columnas;
